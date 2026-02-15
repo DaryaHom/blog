@@ -1,0 +1,9 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $width := .Get "width" -}}
+
+<img 
+  src="{{ $src | relURL }}" 
+  alt="{{ $alt }}"
+  {{ with $width }}width="{{ . }}"{{ end }}
+>
