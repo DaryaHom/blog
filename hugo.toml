@@ -1,0 +1,38 @@
+baseURL = 'https://DaryaHom.github.io/'
+languageCode = 'ru-ru'
+title = 'Технические заметки'
+theme = 'm10c'
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  author = ''
+  description = 'О технологиях, коде и космических хомяках'
+  menu_item_separator = " • "
+
+[[params.social]]
+  icon = "github"
+  name = "My Github"
+  url = "https://github.com/DaryaHom"
+[[params.social]]
+  icon = "telegram"
+  name = "telegram"
+  url = "https://t.me/daryahom"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 3
