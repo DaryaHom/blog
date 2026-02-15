@@ -1,7 +1,9 @@
-baseURL = 'https://DaryaHom.github.io/'
+baseURL = 'https://daryahom.github.io/blog/'
 languageCode = 'ru-ru'
 title = 'Технические заметки'
 theme = 'm10c'
+
+canonifyURLs = true
 
 [pagination]
   pagerSize = 10
