@@ -36,3 +36,8 @@ theme = 'm10c'
     name = "About"
     url = "posts/about/"
     weight = 3
+  [[menu.main]]
+    identifier = "rss"
+    name = "RSS"
+    url = "/index.xml"
+    weight = 4
