@@ -1,9 +1,7 @@
-baseURL = 'https://daryahom.github.io/blog/'
+baseURL = 'https://daryahom.github.io/'
 languageCode = 'ru-ru'
 title = 'Технические заметки'
 theme = 'm10c'
-
-canonifyURLs = true
 
 [pagination]
   pagerSize = 10
@@ -36,5 +34,5 @@ canonifyURLs = true
   [[menu.main]]
     identifier = "about"
     name = "About"
-    url = "/posts/about/"
+    url = "/about/"
     weight = 3
