@@ -5,14 +5,9 @@ tags = ['hugo', 'blog']
 title = 'Пошаговое создание блога'
 +++
 
-Я пишу на go без малого 3 года, что не мешает мне уверенно наступать на одни и те же грабли и искренне удивляться, перечитывая документацию языка.  
-Большинство моих коллег имеет обширные чертоги памяти и не испытывает подобных проблем.  
-Но если вы лох дырявый, как я, то лучше, конечно, всё записывать. Причём сразу в несколько мест, на случай, если одно сломается, а другое потеряется.  
-В общем, долго не думая, я решила завести блог с заметками.  
 
-
-Основные требования, которым должен отвечать мой блог: 
-- он должен не требовать финансовых вложений (вот такая я жадина)
+Основные требования, которым должен был отвечать мой блог: 
+- не требовать финансовых вложений (вот такая я жадина)
 - быть простым для создания и поддержки
 - иметь симпатичный дизайн или возможность быстро его настроить
 
@@ -29,7 +24,7 @@ title = 'Пошаговое создание блога'
 Сразу скажу, у меня не всё получалось с первого раза, ибо криворукость никто не отменял. Но неправильные команды и настройки постараюсь не прилагать =)
 
 Итак, приступим.  
-Для начала я установила расширенную версии hugo на мою безыдейную Ubuntu Jammy Jellyfish.
+Для начала я установила расширенную версии hugo на мою Ubuntu Jammy Jellyfish.
 ```sh
 CGO_ENABLED=1 go install -tags extended,withdeploy github.com/gohugoio/hugo@latest
 ```
@@ -76,10 +71,9 @@ git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c # до
 hugo new content content/posts/about.md
 ```
 Получила радостное `Content "/home/daria/blog/content/posts/about.md" created`.  
-Уря, мой первый пост!  
 
 
-Внутри он выглядел так: 
+Внутри пост выглядел так: 
 ```txt
 +++
 date = '2026-02-14T19:29:57+03:00'
@@ -93,8 +87,9 @@ title = 'About'
 hugo new content content/posts/2026-02-14-about.md
 ```
 Вообще hugo сам берет дату из Front Matter (`date = ...`), поэтому имя файла с датой не обязательно, но удобно для сортировки в редакторе.  
-Мой первый пост, так и быть, останется таким, как есть, но следующие буду датировать, честно-честно.  
-Чтобы пост отобразился на сайте, нужно поменять флаг draft на false.  
+Чтобы пост отобразился на сайте, нужно поменять флаг **draft** на `false`.  
+
+
 Дальше я добавила текст своей первой заметки и переименовала её.  
 Ещё добавила тегов, вдруг потом пригодятся.  
 Итоговый заголовок получился таким: 
@@ -116,7 +111,7 @@ hugo server --buildDrafts
 > ```sh
 > ERROR error building site: render: [en v1.0.0 guest] failed to render pages: render of "/404" failed: "/home/daria/blog/themes/m10c/layouts/_default/baseof.html:12:42": execute of template failed: template: 404.html:12:42: executing "404.html" at <$style.RelPermalink>: error calling RelPermalink: TOCSS: failed to transform "css/main.scss" (text/x-scss). Check your Hugo installation; you need the extended version to build SCSS/SASS with transpiler set to 'libsass'.: this feature is not available in your current Hugo version, see https://goo.gl/YMrWcn for more information
 > ```
-> *Установила расширенную версию, и сервер заработал - дважды уря!*
+> *Установила расширенную версию, и сервер заработал*
 
 Первая страница доступна на `localhost:1313`:  
 {{< img src="images/2026-02-08-first-post/1.png" width="970" height="711">}}
@@ -167,7 +162,9 @@ theme = 'm10c'
 Но вот пустой аватар остался. Мне он был не нужен, поэтому можно его убрать.  
 Настройки дефолтного аватара хранятся в [baseof.html](https://github.com/vaga/hugo-theme-m10c/blob/862c6e941be9bc46ce8adc6a2fa9e984ba647d6f/layouts/_default/baseof.html#L24) темы. Однако, тему я загрузила как сабмодуль, поэтому нельзя просто так взять и отредактировать её. Только через изменения в оригинальном репозитории.  
 Зато можно переопределить некоторые файлы, и тогда локальная версия получит приоритет перед источником темы. 
-Я скопировала `baseof.html` в `blog/layouts/_default` и убрала из соответствующей строки указание на `default "avatar.jpg"` и дефолтного автора.
+Я скопировала `baseof.html` в `blog/layouts/_default` и убрала из соответствующей строки указание на `default "avatar.jpg"` и дефолтного автора.  
+
+
 Было:
 ```html
 <a href="{{ "" | relURL }}"><img class="app-header-avatar" src="{{ .Site.Params.avatar | default "avatar.jpg" | relURL }}" alt="{{ .Site.Params.author | default "John Doe" }}" /></a>
@@ -225,7 +222,7 @@ theme = 'm10c'
 Время выкладывать на github!  
 
 
-Нормальные люди инициализировали бы репозиторий прямо из папки с блогом, но таким оладушкам, как я, советую воспользоваться волшебной кнопкой "New" на вкладке Repositories  в github: 
+Можно инициализировать репозиторий прямо из папки с блогом, но мне нравится web-интерфейс github c волшебной кнопкой **New** на вкладке **Repositories**: 
 
 {{< img src="images/2026-02-08-first-post/3.png" width="970" height="711">}}
 А потом склонировать уже проинициализированный репозиторий и перетащить туда всё содержимое папочки блога:
@@ -255,7 +252,7 @@ git push --set-upstream origin master
 
 
 Документация hugo великолепна, в ней очень хорошо расписана последовательность действий для этого:  
-1. В настройках репозитория **Settings** > **Pages** в разделе `Build and deployment` нужно поменять `Source` c `deploy from a branch` на `GitHub Actions`
+1. В настройках репозитория **Settings** > **Pages** в разделе **Build and deployment** нужно поменять **Source** c `deploy from a branch` на `GitHub Actions`
 2. Настроить кеширование в конфигурации сайта (этот шаг я пропустила😇)
 3. Создать конфиг hugo в директории `.github/workflows` и заполнить его [готовым содержимым](https://gohugo.io/host-and-deploy/host-on-github-pages/#step-4).  
 В содержимом конфига даже менять ничего не пришлось, вот такие hugo умнички.
@@ -271,16 +268,16 @@ git commit -m "Add deploy config"
 git push 
 ```
 
-Далее меню репозитория находим вкладку **Actions**, и во вкладке `Build and deploy` жмав кнопку `Run workflow`  
-После деплоя сайт будет доступен по адресу, указанному в  `Build and deploy`, у меня это https://daryahom.github.io/  
+Далее в меню репозитория находим вкладку **Actions** и во вкладке **Build and deploy** жмав кнопку `Run workflow`  
+После деплоя сайт будет доступен по адресу, указанному в **Build and deploy**, у меня это https://daryahom.github.io/  
 {{< img src="images/2026-02-08-first-post/4.png" width="970" height="711">}}
-Что ж, на этом всё, пойду вознагражу себя за труды пачкой чокопаев, чего и вам желаю, если вы по какой-то причине дочитали до конца =)  
+На этом всё, пойду вознагражу себя за труды пачкой чокопаев, чего и вам желаю, раз вы дочитали до конца =)  
+
 
 **Источники:**
 - https://habr.com/ru/articles/589457/
 - https://habr.com/ru/articles/840218/
 - https://habr.com/ru/articles/778900/
-- https://gohugo.io/host-and-deploy/host-on-github-pages/
 - https://gohugo.io/getting-started/quick-start/
 - https://medium.com/@jh.baek.sd/how-i-built-my-perfect-blogging-setup-with-obsidian-hugo-github-cloudflare-a4f68964fa87
 - https://github.com/gohugoio/hugo
